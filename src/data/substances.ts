@@ -9,8 +9,8 @@ const notes = [
   "", "", "", "", "", "", "", ""
 ];
 
-const rn = (min: number, max: number) => Math.round((min + Math.random() * (max - min)) * 10) / 10;
-const ri = (min: number, max: number) => Math.floor(min + Math.random() * (max - min + 1));
+const rn = (min: number, max: number) => Math.round((min + Math.random * (max - min)) * 10) / 10;
+const ri = (min: number, max: number) => Math.floor(min + Math.random * (max - min + 1));
 const pick = <T>(arr: T[]): T => arr[ri(0, arr.length - 1)];
 const noteFor = (day: number) => notes[day % notes.length];
 
@@ -99,12 +99,12 @@ export const substances: SubstanceConfig[] = [
         },
       },
       {
-        id: 'savings', name: 'Financial Savings', chartType: 'area', yAxisLabel: '₹ Saved',
-        insight: "On track to save ₹3.2L this year. That's a flight to Japan.",
+        id: 'savings', name: 'Financial Savings', chartType: 'area', yAxisLabel: 'Saved',
+        insight: "On track to save a lot this year. That's a flight to Japan.",
         fields: [
           { key: 'bought', label: 'Did you buy alcohol today?', type: 'single-select', options: ['Yes', 'No'] },
-          { key: 'spent', label: 'Amount spent (₹)', type: 'number', min: 0, max: 10000 },
-          { key: 'baseline', label: 'Baseline daily spend (₹)', type: 'number', min: 0, max: 5000 },
+          { key: 'spent', label: 'Amount spent ', type: 'number', min: 0, max: 10000 },
+          { key: 'baseline', label: 'Baseline daily spend ', type: 'number', min: 0, max: 5000 },
           { key: 'notes', label: 'Notes', type: 'textarea' },
         ],
         mockGenerator: (day) => ({
@@ -126,7 +126,7 @@ export const substances: SubstanceConfig[] = [
           { key: 'notes', label: 'Notes', type: 'textarea' },
         ],
         mockGenerator: (day) => ({
-          situations: day < 7 ? [pick(['Party', 'Work stress', 'Social dinner'])] : day < 14 ? (Math.random() > 0.5 ? [pick(['Work stress', 'Boredom'])] : ['None']) : ['None'],
+          situations: day < 7 ? [pick(['Party', 'Work stress', 'Social dinner'])] : day < 14 ? (Math.random > 0.5 ? [pick(['Work stress', 'Boredom'])] : ['None']) : ['None'],
           difficulty: day < 7 ? pick(['Moderate', 'Hard']) : 'Easy',
           outcome: day > 7 ? 'Resisted all' : pick(['Resisted all', 'Partial']),
           strategy: pick(['Left situation', 'AF drink', 'Delayed']),
@@ -139,7 +139,7 @@ export const substances: SubstanceConfig[] = [
       inputs: [
         { key: 'drinksPerDay', label: 'Drinks per day', type: 'slider', min: 0, max: 20, step: 1, defaultValue: 4 },
         { key: 'drinkingDays', label: 'Drinking days per week', type: 'slider', min: 0, max: 7, step: 1, defaultValue: 5 },
-        { key: 'costPerDrink', label: 'Cost per drink (₹)', type: 'slider', min: 50, max: 1000, step: 50, defaultValue: 200 },
+        { key: 'costPerDrink', label: 'Cost per drink ', type: 'slider', min: 50, max: 1000, step: 50, defaultValue: 200 },
       ],
       compute: (inputs) => {
         const weekly = inputs.drinksPerDay * inputs.drinkingDays;
@@ -148,10 +148,10 @@ export const substances: SubstanceConfig[] = [
         return [
           { label: 'Weekly units', value: `${weekly} units`, color: weekly > 14 ? 'destructive' : 'primary' },
           { label: 'Safe limit', value: '14 units/week' },
-          { label: 'Monthly spend', value: `₹${Math.round(monthly).toLocaleString()}` },
-          { label: 'Yearly spend', value: `₹${Math.round(yearly).toLocaleString()}` },
+          { label: 'Monthly spend', value: `${Math.round(monthly).toLocaleString}` },
+          { label: 'Yearly spend', value: `${Math.round(yearly).toLocaleString}` },
           { label: 'Liver risk', value: weekly > 35 ? 'High' : weekly > 14 ? 'Moderate' : 'Low', color: weekly > 35 ? 'destructive' : weekly > 14 ? 'accent' : 'primary' },
-          { label: '1-year savings if quit', value: `₹${Math.round(yearly).toLocaleString()}` },
+          { label: '1-year savings if quit', value: `${Math.round(yearly).toLocaleString}` },
         ];
       },
       note: "Your liver begins regenerating within 72 hours of stopping.",
@@ -197,23 +197,8 @@ export const substances: SubstanceConfig[] = [
       { id: 'a4', title: 'Navigating social situations alcohol-free', tag: 'Practical', content: 'The first sober party feels impossible in advance. It rarely is in practice.\n\nPractical tools: Arrive with your own drink already in hand — sparkling water, AF cocktail, anything.\n\nScripts that work: "I\'m driving tonight." "I\'m on a health kick." "Not drinking at the moment."\n\nThe first sober social event is the hardest. The second is easier. The anxiety shrinks in proportion to the evidence.' },
       { id: 'a5', title: 'Alcohol and anxiety: which came first?', tag: 'Science', content: 'Many people discover too late that alcohol was treating anxiety they didn\'t know they had.\n\nWhen you quit, the GABA system becomes hyperactive — rebound anxiety spikes for 2–4 weeks. This is neurological, not psychological weakness.\n\nAnxiety after quitting is almost always worse short-term and dramatically better by 90 days. People who drink to manage anxiety almost universally have lower baseline anxiety at 3 months sober.' },
     ],
-    communityPosts: [
-      { id: 'c1', type: 'Milestone', title: 'Day 21 — I slept 8 hours last night for the first time in years', body: 'For 10 years I drank to get to sleep. Last night I fell asleep naturally at 10:30 and woke at 7 AM. I genuinely cried when I woke up.', upvotes: 234, comments: 41, timeAgo: '2h ago', username: 'anonymous_sunrise', replies: [{ username: 'night_owl_23', text: 'This gives me so much hope. I\'m on day 4 and sleep is terrible right now.', timeAgo: '1h ago' }, { username: 'steady_hands', text: 'The sleep coming back is the best part. Congrats.', timeAgo: '45m ago' }] },
-      { id: 'c2', type: 'Question', title: 'The shaking is scaring me on Day 2 — is this normal?', body: 'My hands won\'t stop trembling. I haven\'t told anyone I\'m quitting. Is this dangerous? When does it stop?', upvotes: 67, comments: 28, timeAgo: '5h ago', username: 'worried_day2', replies: [{ username: 'been_there', text: 'Mild tremors are common Days 1-3. If they\'re severe or you feel confused, please see a doctor immediately. Stay hydrated.', timeAgo: '4h ago' }] },
-      { id: 'c3', type: 'Tip', title: 'Sparkling water + lime at 6pm is doing something', body: 'I know it sounds too simple. But replacing the fizzy drink ritual at exactly 6pm has broken my daily trigger more than anything else.', upvotes: 189, comments: 33, timeAgo: '1d ago', username: 'fizz_not_booze' },
-      { id: 'c4', type: 'Story', title: 'Lost my job, quit drinking — now I have a better one', body: 'The alcohol cost me everything first. Then it turned out the everything was the only thing keeping me drinking.', upvotes: 512, comments: 76, timeAgo: '3d ago', username: 'second_chance' },
-      { id: 'c5', type: 'Support', title: 'Day 3 and considering giving up', body: 'Everything hurts, I can\'t sleep, and I don\'t understand why I\'m doing this to myself. Someone please tell me it gets better.', upvotes: 341, comments: 94, timeAgo: '6h ago', username: 'holding_on' },
-    ],
-    achievements: [
-      { id: 'first-step', name: 'First Step', description: 'Logged Day 1', icon: '🌱', condition: () => ({ unlocked: true }) },
-      { id: 'one-week', name: 'One Week', description: '7 days clean', icon: '🌿', condition: () => ({ unlocked: true }) },
-      { id: 'two-weeks', name: 'Two Weeks', description: '14 days clean', icon: '🌳', condition: () => ({ unlocked: true }) },
-      { id: 'craving-fighter', name: 'Craving Fighter', description: 'Resisted a logged craving', icon: '💪', condition: () => ({ unlocked: true }) },
-      { id: '30-days', name: '30 Days', description: '30 days clean', icon: '⭐', condition: () => ({ unlocked: false, progress: '9 days to go' }) },
-      { id: 'sleep-champion', name: 'Sleep Champion', description: '7 nights of 7+ hours', icon: '😴', condition: () => ({ unlocked: false, progress: '3 nights to go' }) },
-      { id: 'community-voice', name: 'Community Voice', description: 'First community post', icon: '💬', condition: () => ({ unlocked: false }) },
-      { id: '3-months', name: '3 Months', description: '90 days clean', icon: '🏆', condition: () => ({ unlocked: false, progress: '69 days to go' }) },
-    ],
+    communityPosts: [],
+    achievements: [],
   },
   // ===== TOBACCO =====
   {
@@ -283,11 +268,11 @@ export const substances: SubstanceConfig[] = [
         mockGenerator: (day) => ({ nrtType: 'Patch', patchLevel: day < 7 ? '21mg' : '14mg', extraCigarettes: Math.max(0, ri(10 - day, 12 - day)), totalNicotine: day < 7 ? ri(30, 40) : ri(14, 20), notes: noteFor(day) }),
       },
       {
-        id: 'financial-health', name: 'Financial & Health', chartType: 'area', yAxisLabel: '₹ Saved',
+        id: 'financial-health', name: 'Financial & Health', chartType: 'area', yAxisLabel: 'Saved',
         insight: "Taste and smell returned on Day 7. Lung cancer risk drops 72% at 10 years.",
         fields: [
           { key: 'bought', label: 'Bought cigarettes?', type: 'single-select', options: ['Yes', 'No'] },
-          { key: 'spent', label: 'Amount spent (₹)', type: 'number', min: 0, max: 5000 },
+          { key: 'spent', label: 'Amount spent ', type: 'number', min: 0, max: 5000 },
           { key: 'healthMilestone', label: 'Health milestone', type: 'chips', options: ['Improved taste', 'Easier breathing', 'Less cough', 'Better circulation'], multiSelect: true },
           { key: 'notes', label: 'Notes', type: 'textarea' },
         ],
@@ -298,7 +283,7 @@ export const substances: SubstanceConfig[] = [
       title: 'Cigarette Cost & Health Impact',
       inputs: [
         { key: 'cigarettesPerDay', label: 'Cigarettes per day', type: 'slider', min: 1, max: 60, step: 1, defaultValue: 15 },
-        { key: 'costPerPack', label: 'Cost per pack (₹)', type: 'slider', min: 50, max: 1000, step: 10, defaultValue: 280 },
+        { key: 'costPerPack', label: 'Cost per pack ', type: 'slider', min: 50, max: 1000, step: 10, defaultValue: 280 },
         { key: 'yearsSmoked', label: 'Years smoked', type: 'slider', min: 1, max: 50, step: 1, defaultValue: 8 },
       ],
       compute: (inputs) => {
@@ -306,9 +291,9 @@ export const substances: SubstanceConfig[] = [
         const yearly = daily * 365;
         const total = yearly * inputs.yearsSmoked;
         return [
-          { label: 'Daily spend', value: `₹${Math.round(daily)}` },
-          { label: 'Yearly spend', value: `₹${Math.round(yearly).toLocaleString()}` },
-          { label: 'Total spent', value: `₹${Math.round(total).toLocaleString()}` },
+          { label: 'Daily spend', value: `${Math.round(daily)}` },
+          { label: 'Yearly spend', value: `${Math.round(yearly).toLocaleString}` },
+          { label: 'Total spent', value: `${Math.round(total).toLocaleString}` },
           { label: 'Carcinogens per cigarette', value: '69 known' },
           { label: '10-year benefit', value: '72% lower lung cancer risk' },
         ];
@@ -326,23 +311,8 @@ export const substances: SubstanceConfig[] = [
       { id: 'a4', title: 'Vaping as a quit tool: what the evidence says', tag: 'Research', content: 'Vaping delivers nicotine without combustion products. The evidence cautiously supports it as a harm reduction tool. Less harmful does not mean harmless.' },
       { id: 'a5', title: 'The 6 withdrawal symptoms and when they end', tag: 'Recovery', content: 'Irritability: peaks Days 2–3, resolves Week 2.\nHunger: begins within 24 hours.\nInsomnia: Days 2–5.\nBrain fog: Week 1.\nDepression: Days 3–5.\nConstipation: Days 3–5.' },
     ],
-    communityPosts: [
-      { id: 'c1', type: 'Milestone', title: 'The barista told me I smelled nice today', body: 'I\'ve been a smoker for 14 years. Someone told me I smelled nice this morning.', upvotes: 891, comments: 45, timeAgo: '3h ago', username: 'fresh_start_22' },
-      { id: 'c2', type: 'Tip', title: 'Put the money you\'d spend in a visible jar', body: 'Every day I put ₹280 in a glass jar. I can see ₹8,400 now. That\'s real.', upvotes: 445, comments: 22, timeAgo: '1d ago', username: 'jar_saver' },
-      { id: 'c3', type: 'Question', title: 'Day 3 — crying at adverts. Is this normal?', body: 'Is it possible quitting cigarettes is causing a breakdown?', upvotes: 156, comments: 18, timeAgo: '8h ago', username: 'emotional_mess' },
-      { id: 'c4', type: 'Story', title: '10 years, 200 attempts, finally Day 47', body: 'I think this time I was finally tired enough to want the discomfort more than the cigarette.', upvotes: 723, comments: 54, timeAgo: '2d ago', username: 'finally_free' },
-      { id: 'c5', type: 'Support', title: 'Lit up after 12 days clean', body: 'I want to start counting again but I feel like a fraud.', upvotes: 203, comments: 31, timeAgo: '12h ago', username: 'trying_again' },
-    ],
-    achievements: [
-      { id: 'first-step', name: 'First Step', description: 'Logged Day 1', icon: '🌱', condition: () => ({ unlocked: true }) },
-      { id: 'one-week', name: 'One Week', description: '7 days clean', icon: '🌿', condition: () => ({ unlocked: true }) },
-      { id: 'two-weeks', name: 'Two Weeks', description: '14 days clean', icon: '🌳', condition: () => ({ unlocked: true }) },
-      { id: 'craving-fighter', name: 'Craving Fighter', description: 'Resisted a craving', icon: '💪', condition: () => ({ unlocked: true }) },
-      { id: '30-days', name: '30 Days', description: '30 days clean', icon: '⭐', condition: () => ({ unlocked: false, progress: '9 days to go' }) },
-      { id: 'sleep-champion', name: 'Sleep Champion', description: '7+ hrs for 7 nights', icon: '😴', condition: () => ({ unlocked: false, progress: '3 nights to go' }) },
-      { id: 'community-voice', name: 'Community Voice', description: 'First post', icon: '💬', condition: () => ({ unlocked: false }) },
-      { id: '3-months', name: '3 Months', description: '90 days clean', icon: '🏆', condition: () => ({ unlocked: false, progress: '69 days to go' }) },
-    ],
+    communityPosts: [],
+    achievements: [],
   },
   // ===== OPIOIDS =====
   {
@@ -400,7 +370,7 @@ export const substances: SubstanceConfig[] = [
           { key: 'medication', label: 'Medication as prescribed', type: 'single-select', options: ['Yes', 'No', 'Not prescribed'] },
           { key: 'notes', label: 'Notes', type: 'textarea' },
         ],
-        mockGenerator: (day) => ({ naMeeting: day > 11 ? 'Yes' : pick(['Yes', 'No']), therapy: day % 3 === 0 ? 'Yes' : 'No', sponsor: day > 7 ? 'Yes' : pick(['Yes', 'No']), medication: 'Yes', attended: day > 11 || Math.random() > 0.3, notes: noteFor(day) }),
+        mockGenerator: (day) => ({ naMeeting: day > 11 ? 'Yes' : pick(['Yes', 'No']), therapy: day % 3 === 0 ? 'Yes' : 'No', sponsor: day > 7 ? 'Yes' : pick(['Yes', 'No']), medication: 'Yes', attended: day > 11 || Math.random > 0.3, notes: noteFor(day) }),
       },
       { id: 'functional', name: 'Functional Recovery', chartType: 'area', yAxisLabel: 'Score', insight: 'All 5 functional areas showing measurable improvement.',
         fields: [
@@ -438,23 +408,8 @@ export const substances: SubstanceConfig[] = [
       { id: 'a4', title: 'How pain gets managed without opioids', tag: 'Practical', content: 'Physical therapy, NSAIDs, nerve blocks, mindfulness-based pain management. Multiple approaches that build capacity rather than creating tolerance.' },
       { id: 'a5', title: 'NA vs SMART Recovery', tag: 'Resources', content: 'NA: peer-led, spiritually-oriented. SMART: science-based, CBT-derived. Attendance consistency matters more than which program.' },
     ],
-    communityPosts: [
-      { id: 'c1', type: 'Milestone', title: 'Day 100 on MAT. My kids were returned last week.', body: 'I want someone on Day 3 to know: it becomes possible to get everything back.', upvotes: 1204, comments: 87, timeAgo: '4h ago', username: 'dad_again' },
-      { id: 'c2', type: 'Tip', title: 'Tell your doctor everything', body: 'I hid my use for 2 years. When I finally told him, he got me on buprenorphine the same week.', upvotes: 445, comments: 34, timeAgo: '1d ago', username: 'honest_now' },
-      { id: 'c3', type: 'Question', title: 'Does the psychological craving ever stop?', body: 'Day 45 — physically fine. But the want is still there.', upvotes: 289, comments: 45, timeAgo: '6h ago', username: 'day45_wondering' },
-      { id: 'c4', type: 'Story', title: 'Fentanyl took 3 friends. I\'m still here.', body: 'I don\'t know why I survived. But I\'m going to use the time.', upvotes: 876, comments: 112, timeAgo: '2d ago', username: 'survivor_99' },
-      { id: 'c5', type: 'Support', title: 'Relapsed after 60 days. Devastated.', body: 'I thought I was done. I\'m so tired of starting over.', upvotes: 567, comments: 78, timeAgo: '10h ago', username: 'starting_again' },
-    ],
-    achievements: [
-      { id: 'first-step', name: 'First Step', description: 'Logged Day 1', icon: '🌱', condition: () => ({ unlocked: true }) },
-      { id: 'one-week', name: 'One Week', description: '7 days clean', icon: '🌿', condition: () => ({ unlocked: true }) },
-      { id: 'two-weeks', name: 'Two Weeks', description: '14 days clean', icon: '🌳', condition: () => ({ unlocked: true }) },
-      { id: 'craving-fighter', name: 'Craving Fighter', description: 'Resisted a craving', icon: '💪', condition: () => ({ unlocked: true }) },
-      { id: '30-days', name: '30 Days', description: '30 days clean', icon: '⭐', condition: () => ({ unlocked: false, progress: '9 days to go' }) },
-      { id: 'sleep-champion', name: 'Sleep Champion', description: '7+ hrs for 7 nights', icon: '😴', condition: () => ({ unlocked: false, progress: '3 nights to go' }) },
-      { id: 'community-voice', name: 'Community Voice', description: 'First post', icon: '💬', condition: () => ({ unlocked: false }) },
-      { id: '3-months', name: '3 Months', description: '90 days clean', icon: '🏆', condition: () => ({ unlocked: false, progress: '69 days to go' }) },
-    ],
+    communityPosts: [],
+    achievements: [],
   },
   // ===== CANNABIS =====
   {
@@ -489,14 +444,14 @@ export const substances: SubstanceConfig[] = [
       title: 'Usage Cost & Recovery',
       inputs: [
         { key: 'gramsPerWeek', label: 'Grams per week', type: 'slider', min: 1, max: 30, step: 1, defaultValue: 7 },
-        { key: 'costPerGram', label: 'Cost per gram (₹)', type: 'slider', min: 100, max: 2000, step: 50, defaultValue: 500 },
+        { key: 'costPerGram', label: 'Cost per gram ', type: 'slider', min: 100, max: 2000, step: 50, defaultValue: 500 },
       ],
       compute: (inputs) => {
         const weekly = inputs.gramsPerWeek * inputs.costPerGram;
         return [
-          { label: 'Weekly spend', value: `₹${weekly.toLocaleString()}` },
-          { label: 'Monthly spend', value: `₹${Math.round(weekly * 4.3).toLocaleString()}` },
-          { label: 'Yearly spend', value: `₹${Math.round(weekly * 52).toLocaleString()}` },
+          { label: 'Weekly spend', value: `${weekly.toLocaleString}` },
+          { label: 'Monthly spend', value: `${Math.round(weekly * 4.3).toLocaleString}` },
+          { label: 'Yearly spend', value: `${Math.round(weekly * 52).toLocaleString}` },
           { label: 'THC clearance', value: 'Heavy users: 30-90 days' },
           { label: 'Cognitive recovery', value: '2-4 weeks for most functions' },
         ];
@@ -514,23 +469,8 @@ export const substances: SubstanceConfig[] = [
       { id: 'a4', title: 'CHS: the vomiting syndrome nobody talks about', tag: 'Health', content: 'Cannabinoid Hyperemesis Syndrome causes severe cyclic vomiting in heavy users. It resolves completely with cessation.' },
       { id: 'a5', title: 'Cannabis and anxiety: the paradox', tag: 'Science', content: 'Cannabis reduces anxiety short-term while increasing baseline anxiety long-term. Most people find anxiety significantly lower at 60–90 days abstinent.' },
     ],
-    communityPosts: [
-      { id: 'c1', type: 'Milestone', title: 'I read a whole book this week', body: 'I forgot I even liked reading. The fog is lifting.', upvotes: 743, comments: 56, timeAgo: '5h ago', username: 'book_reader' },
-      { id: 'c2', type: 'Tip', title: 'Replace the evening smoke with a walk', body: 'I smoked every night at 9pm. Now I walk at 9pm. 6 weeks in, the walk is better.', upvotes: 412, comments: 28, timeAgo: '1d ago', username: 'evening_walker' },
-      { id: 'c3', type: 'Question', title: 'Is it normal to feel more anxious after quitting?', body: 'Cannabis was helping my anxiety. Now it\'s worse. Is this permanent?', upvotes: 189, comments: 34, timeAgo: '8h ago', username: 'anxious_quitter' },
-      { id: 'c4', type: 'Story', title: 'My friends said I changed', body: 'Heavy use kept me the same person I was at 19. Quitting made me grow.', upvotes: 634, comments: 47, timeAgo: '2d ago', username: 'growing_up' },
-      { id: 'c5', type: 'Support', title: 'Smoked after 11 days. Can\'t stop crying.', body: 'I was doing so well. I don\'t know how to start counting again.', upvotes: 278, comments: 52, timeAgo: '3h ago', username: 'starting_over' },
-    ],
-    achievements: [
-      { id: 'first-step', name: 'First Step', description: 'Logged Day 1', icon: '🌱', condition: () => ({ unlocked: true }) },
-      { id: 'one-week', name: 'One Week', description: '7 days clean', icon: '🌿', condition: () => ({ unlocked: true }) },
-      { id: 'two-weeks', name: 'Two Weeks', description: '14 days clean', icon: '🌳', condition: () => ({ unlocked: true }) },
-      { id: 'craving-fighter', name: 'Craving Fighter', description: 'Resisted a craving', icon: '💪', condition: () => ({ unlocked: true }) },
-      { id: '30-days', name: '30 Days', description: '30 days clean', icon: '⭐', condition: () => ({ unlocked: false, progress: '9 days to go' }) },
-      { id: 'sleep-champion', name: 'Sleep Champion', description: '7+ hrs for 7 nights', icon: '😴', condition: () => ({ unlocked: false }) },
-      { id: 'community-voice', name: 'Community Voice', description: 'First post', icon: '💬', condition: () => ({ unlocked: false }) },
-      { id: '3-months', name: '3 Months', description: '90 days clean', icon: '🏆', condition: () => ({ unlocked: false, progress: '69 days to go' }) },
-    ],
+    communityPosts: [],
+    achievements: [],
   },
   // ===== STIMULANTS =====
   {
@@ -538,7 +478,7 @@ export const substances: SubstanceConfig[] = [
     banner: { text: '⚠️ Cardiovascular Alert: Stimulant use significantly elevates heart attack risk. Monitor your resting heart rate.', type: 'warning', dismissable: true },
     trackers: [
       { id: 'use-frequency', name: 'Use Frequency', chartType: 'bar', yAxisLabel: 'Grams', insight: '14 consecutive days clean. The physical crash phase is behind you.',
-        fields: [{ key: 'used', label: 'Used today', type: 'single-select', options: ['Yes', 'No'] }, { key: 'type', label: 'Type', type: 'chips', options: ['Cocaine', 'Crack', 'Meth', 'Adderall', 'Other'] }, { key: 'amount', label: 'Amount (g)', type: 'number', min: 0, max: 10 }, { key: 'cost', label: 'Cost (₹)', type: 'number', min: 0, max: 50000 }, { key: 'notes', label: 'Notes', type: 'textarea' }],
+        fields: [{ key: 'used', label: 'Used today', type: 'single-select', options: ['Yes', 'No'] }, { key: 'type', label: 'Type', type: 'chips', options: ['Cocaine', 'Crack', 'Meth', 'Adderall', 'Other'] }, { key: 'amount', label: 'Amount (g)', type: 'number', min: 0, max: 10 }, { key: 'cost', label: 'Cost ', type: 'number', min: 0, max: 50000 }, { key: 'notes', label: 'Notes', type: 'textarea' }],
         mockGenerator: (day) => ({ used: day < 8 ? (day < 4 ? 'Yes' : pick(['Yes', 'No'])) : 'No', amount: day < 8 ? rn(0, Math.max(0, 2.5 - day * 0.35)) : 0, type: day < 8 ? 'Cocaine' : '', cost: day < 8 ? ri(0, 5000) : 0, notes: noteFor(day) }),
       },
       { id: 'mood-anhedonia', name: 'Mood & Anhedonia', chartType: 'line', yAxisLabel: 'Score', insight: 'Anhedonia resolves over weeks. Dopamine pathways are actively rebuilding.',
@@ -567,13 +507,13 @@ export const substances: SubstanceConfig[] = [
       inputs: [
         { key: 'gramsPerUse', label: 'Grams per use', type: 'slider', min: 0.1, max: 5, step: 0.1, defaultValue: 0.5 },
         { key: 'timesPerWeek', label: 'Times per week', type: 'slider', min: 1, max: 14, step: 1, defaultValue: 3 },
-        { key: 'costPerGram', label: 'Cost per gram (₹)', type: 'slider', min: 1000, max: 20000, step: 500, defaultValue: 5000 },
+        { key: 'costPerGram', label: 'Cost per gram ', type: 'slider', min: 1000, max: 20000, step: 500, defaultValue: 5000 },
       ],
       compute: (inputs) => {
         const weekly = inputs.gramsPerUse * inputs.timesPerWeek * inputs.costPerGram;
         return [
-          { label: 'Weekly spend', value: `₹${Math.round(weekly).toLocaleString()}` },
-          { label: 'Yearly spend', value: `₹${Math.round(weekly * 52).toLocaleString()}` },
+          { label: 'Weekly spend', value: `${Math.round(weekly).toLocaleString}` },
+          { label: 'Yearly spend', value: `${Math.round(weekly * 52).toLocaleString}` },
           { label: 'Cardiovascular risk', value: 'Cocaine triples heart attack risk for 60 min after each use', color: 'destructive' },
           { label: 'Heart rate recovery', value: '↓ ~40 BPM within 21 days' },
         ];
@@ -591,23 +531,8 @@ export const substances: SubstanceConfig[] = [
       { id: 'a4', title: 'Crystal meth and the brain', tag: 'Science', content: 'Meth damages dopamine neuron terminals. Recovery takes 12–18 months. Brain imaging shows measurable recovery in dopamine transporter density.' },
       { id: 'a5', title: 'Nutrition in stimulant recovery', tag: 'Practical', content: 'Tyrosine-rich foods provide dopamine precursors. Magnesium supports sleep. Omega-3s support neural repair.' },
     ],
-    communityPosts: [
-      { id: 'c1', type: 'Milestone', title: 'Day 21 — I felt something today. I laughed and it was real.', body: 'I didn\'t know how numb I was until I felt something again.', upvotes: 623, comments: 45, timeAgo: '4h ago', username: 'feeling_again' },
-      { id: 'c2', type: 'Tip', title: 'The crash is your brain healing. Reframe it.', body: 'My therapist said: this is your brain recalibrating. That changed everything.', upvotes: 334, comments: 23, timeAgo: '1d ago', username: 'reframed' },
-      { id: 'c3', type: 'Question', title: 'Is zero joy for weeks normal?', body: 'Day 18. Nothing registers. Food, music, people — nothing.', upvotes: 289, comments: 38, timeAgo: '6h ago', username: 'empty_inside' },
-      { id: 'c4', type: 'Story', title: 'Recovery gave me back my daughter', body: 'She calls me dad again.', upvotes: 712, comments: 67, timeAgo: '2d ago', username: 'dad_restored' },
-      { id: 'c5', type: 'Support', title: 'Nobody around me understands', body: 'I\'m so tired of explaining that this isn\'t a choice.', upvotes: 178, comments: 25, timeAgo: '9h ago', username: 'misunderstood' },
-    ],
-    achievements: [
-      { id: 'first-step', name: 'First Step', description: 'Logged Day 1', icon: '🌱', condition: () => ({ unlocked: true }) },
-      { id: 'one-week', name: 'One Week', description: '7 days clean', icon: '🌿', condition: () => ({ unlocked: true }) },
-      { id: 'two-weeks', name: 'Two Weeks', description: '14 days clean', icon: '🌳', condition: () => ({ unlocked: true }) },
-      { id: 'craving-fighter', name: 'Craving Fighter', description: 'Resisted a craving', icon: '💪', condition: () => ({ unlocked: true }) },
-      { id: '30-days', name: '30 Days', description: '30 days clean', icon: '⭐', condition: () => ({ unlocked: false, progress: '9 days to go' }) },
-      { id: 'sleep-champion', name: 'Sleep Champion', description: '7+ hrs for 7 nights', icon: '😴', condition: () => ({ unlocked: false }) },
-      { id: 'community-voice', name: 'Community Voice', description: 'First post', icon: '💬', condition: () => ({ unlocked: false }) },
-      { id: '3-months', name: '3 Months', description: '90 days clean', icon: '🏆', condition: () => ({ unlocked: false, progress: '69 days to go' }) },
-    ],
+    communityPosts: [],
+    achievements: [],
   },
   // ===== BENZODIAZEPINES =====
   {
@@ -668,23 +593,8 @@ export const substances: SubstanceConfig[] = [
       { id: 'a4', title: 'Cognitive recovery after benzos', tag: 'Science', content: 'Memory and processing speed improve significantly after taper completion. Most people report being "sharper than they\'ve been in years."' },
       { id: 'a5', title: 'Natural GABA support', tag: 'Practical', content: 'Magnesium, L-theanine, and regular exercise all support natural GABA activity.' },
     ],
-    communityPosts: [
-      { id: 'c1', type: 'Milestone', title: 'Tapered from 4mg to 1mg over 3 months', body: 'Slow and steady. My doctor said my progress is textbook.', upvotes: 456, comments: 34, timeAgo: '5h ago', username: 'slow_and_steady' },
-      { id: 'c2', type: 'Tip', title: 'Get a pill cutter and liquid diazepam for micro-tapers', body: 'The smaller the steps, the easier each one is.', upvotes: 334, comments: 22, timeAgo: '1d ago', username: 'micro_taper' },
-      { id: 'c3', type: 'Question', title: 'Is brain fog from benzos permanent?', body: 'I\'ve been on them for 8 years. I\'m scared the fog won\'t lift.', upvotes: 267, comments: 42, timeAgo: '3h ago', username: 'foggy_brain' },
-      { id: 'c4', type: 'Story', title: 'Doctor told me I\'d be on them for life. I\'m benzo-free.', body: 'It took 18 months of tapering. Worth every difficult day.', upvotes: 891, comments: 89, timeAgo: '2d ago', username: 'benzo_free' },
-      { id: 'c5', type: 'Support', title: 'The waves are so hard. When does it stabilize?', body: 'Had 3 good days then today hit like a truck.', upvotes: 198, comments: 35, timeAgo: '7h ago', username: 'riding_waves' },
-    ],
-    achievements: [
-      { id: 'first-step', name: 'First Step', description: 'Logged Day 1', icon: '🌱', condition: () => ({ unlocked: true }) },
-      { id: 'one-week', name: 'One Week', description: '7 days tracked', icon: '🌿', condition: () => ({ unlocked: true }) },
-      { id: 'two-weeks', name: 'Two Weeks', description: '14 days tracked', icon: '🌳', condition: () => ({ unlocked: true }) },
-      { id: 'craving-fighter', name: 'Craving Fighter', description: 'Resisted a craving', icon: '💪', condition: () => ({ unlocked: true }) },
-      { id: '30-days', name: '30 Days', description: '30 days tracked', icon: '⭐', condition: () => ({ unlocked: false, progress: '9 days to go' }) },
-      { id: 'sleep-champion', name: 'Sleep Champion', description: '7+ hrs for 7 nights', icon: '😴', condition: () => ({ unlocked: false }) },
-      { id: 'community-voice', name: 'Community Voice', description: 'First post', icon: '💬', condition: () => ({ unlocked: false }) },
-      { id: '3-months', name: '3 Months', description: '90 days tracked', icon: '🏆', condition: () => ({ unlocked: false, progress: '69 days to go' }) },
-    ],
+    communityPosts: [],
+    achievements: [],
   },
   // ===== KRATOM =====
   {
@@ -710,8 +620,8 @@ export const substances: SubstanceConfig[] = [
         fields: [{ key: 'hours', label: 'Sleep hours', type: 'slider', min: 0, max: 12, step: 0.5 }, { key: 'quality', label: 'Quality', type: 'slider', min: 1, max: 10, step: 1 }, { key: 'restlessLegs', label: 'Restless legs', type: 'single-select', options: ['Yes', 'No'] }, { key: 'notes', label: 'Notes', type: 'textarea' }],
         mockGenerator: (day) => ({ hours: Math.min(9, rn(3 + day * 0.25, 4 + day * 0.22)), quality: Math.min(10, rn(2 + day * 0.3, 3 + day * 0.28)), restlessLegs: day < 10 ? 'Yes' : 'No', notes: noteFor(day) }),
       },
-      { id: 'financial', name: 'Financial Tracking', chartType: 'area', yAxisLabel: '₹ Saved', insight: 'Savings accumulating. Redirect to something meaningful.',
-        fields: [{ key: 'bought', label: 'Bought kratom?', type: 'single-select', options: ['Yes', 'No'] }, { key: 'spent', label: 'Amount (₹)', type: 'number', min: 0, max: 10000 }, { key: 'notes', label: 'Notes', type: 'textarea' }],
+      { id: 'financial', name: 'Financial Tracking', chartType: 'area', yAxisLabel: 'Saved', insight: 'Savings accumulating. Redirect to something meaningful.',
+        fields: [{ key: 'bought', label: 'Bought kratom?', type: 'single-select', options: ['Yes', 'No'] }, { key: 'spent', label: 'Amount ', type: 'number', min: 0, max: 10000 }, { key: 'notes', label: 'Notes', type: 'textarea' }],
         mockGenerator: (day) => ({ bought: day < 5 ? 'Yes' : 'No', spent: day < 5 ? ri(200, 800) : 0, cumulative: Math.round(400 * Math.max(0, 21 - day)), notes: noteFor(day) }),
       },
     ],
@@ -719,14 +629,14 @@ export const substances: SubstanceConfig[] = [
       title: 'Usage Cost & Dependence',
       inputs: [
         { key: 'gramsPerDay', label: 'Grams per day', type: 'slider', min: 1, max: 50, step: 1, defaultValue: 15 },
-        { key: 'costPerKg', label: 'Cost per kg (₹)', type: 'slider', min: 1000, max: 10000, step: 500, defaultValue: 3000 },
+        { key: 'costPerKg', label: 'Cost per kg ', type: 'slider', min: 1000, max: 10000, step: 500, defaultValue: 3000 },
       ],
       compute: (inputs) => {
         const daily = (inputs.gramsPerDay / 1000) * inputs.costPerKg;
         return [
-          { label: 'Daily cost', value: `₹${Math.round(daily)}` },
-          { label: 'Monthly cost', value: `₹${Math.round(daily * 30).toLocaleString()}` },
-          { label: 'Yearly cost', value: `₹${Math.round(daily * 365).toLocaleString()}` },
+          { label: 'Daily cost', value: `${Math.round(daily)}` },
+          { label: 'Monthly cost', value: `${Math.round(daily * 30).toLocaleString}` },
+          { label: 'Yearly cost', value: `${Math.round(daily * 365).toLocaleString}` },
           { label: 'Opioid receptor binding', value: 'Mitragynine binds mu-opioid receptors' },
         ];
       },
@@ -743,23 +653,8 @@ export const substances: SubstanceConfig[] = [
       { id: 'a4', title: 'Reddit, vendors, and the kratom community', tag: 'Psychology', content: 'Online communities normalize heavy use. For people trying to quit, these spaces are reliable craving triggers.' },
       { id: 'a5', title: 'Natural energy after kratom', tag: 'Practical', content: 'Morning sunlight, B-complex vitamins, consistent sleep, and regular exercise. Recovery is faster with exercise.' },
     ],
-    communityPosts: [
-      { id: 'c1', type: 'Milestone', title: 'Day 12 — past my previous record', body: 'I\'ve tried 6 times. I feel like a different person.', upvotes: 312, comments: 28, timeAgo: '4h ago', username: 'new_record' },
-      { id: 'c2', type: 'Tip', title: 'Leaving kratom subreddits dropped cravings 50%', body: 'I didn\'t realize how much those communities kept my brain focused.', upvotes: 278, comments: 19, timeAgo: '1d ago', username: 'logged_off' },
-      { id: 'c3', type: 'Question', title: 'Does the anxiety ever separate from the kratom?', body: 'I can\'t tell if my anxiety exists without it anymore.', upvotes: 156, comments: 23, timeAgo: '6h ago', username: 'confused_quitter' },
-      { id: 'c4', type: 'Story', title: 'I spent ₹96,000 last year on kratom', body: 'I did the math. Then I booked a trip to Thailand.', upvotes: 445, comments: 37, timeAgo: '2d ago', username: 'travel_fund' },
-      { id: 'c5', type: 'Support', title: 'The muscle aches are unbearable on Day 3', body: 'I can\'t sleep. Everything aches. Nobody warned me.', upvotes: 178, comments: 31, timeAgo: '8h ago', username: 'day3_pain' },
-    ],
-    achievements: [
-      { id: 'first-step', name: 'First Step', description: 'Logged Day 1', icon: '🌱', condition: () => ({ unlocked: true }) },
-      { id: 'one-week', name: 'One Week', description: '7 days clean', icon: '🌿', condition: () => ({ unlocked: true }) },
-      { id: 'two-weeks', name: 'Two Weeks', description: '14 days clean', icon: '🌳', condition: () => ({ unlocked: true }) },
-      { id: 'craving-fighter', name: 'Craving Fighter', description: 'Resisted a craving', icon: '💪', condition: () => ({ unlocked: true }) },
-      { id: '30-days', name: '30 Days', description: '30 days clean', icon: '⭐', condition: () => ({ unlocked: false, progress: '9 days to go' }) },
-      { id: 'sleep-champion', name: 'Sleep Champion', description: '7+ hrs for 7 nights', icon: '😴', condition: () => ({ unlocked: false }) },
-      { id: 'community-voice', name: 'Community Voice', description: 'First post', icon: '💬', condition: () => ({ unlocked: false }) },
-      { id: '3-months', name: '3 Months', description: '90 days clean', icon: '🏆', condition: () => ({ unlocked: false, progress: '69 days to go' }) },
-    ],
+    communityPosts: [],
+    achievements: [],
   },
   // ===== MDMA =====
   {
@@ -818,23 +713,8 @@ export const substances: SubstanceConfig[] = [
       { id: 'a4', title: 'Harm reduction approach', tag: 'Practical', content: 'Lower doses (75–100mg), infrequent use (max monthly), test substances, stay hydrated but not over-hydrated.' },
       { id: 'a5', title: 'Rebuilding serotonin naturally', tag: 'Practical', content: 'Aerobic exercise, sunlight, tryptophan-rich nutrition, and quality sleep. Exercise is the most consistently effective intervention.' },
     ],
-    communityPosts: [
-      { id: 'c1', type: 'Milestone', title: 'Day 30 — I cried at a film tonight. Actually cried.', body: 'I\'d been emotionally flat for months. I forgot I could feel things.', upvotes: 567, comments: 42, timeAgo: '3h ago', username: 'feeling_films' },
-      { id: 'c2', type: 'Tip', title: 'The 3-month rule is real', body: 'I was using every 2–3 weeks. When I took 3 months off, I felt more like myself.', upvotes: 445, comments: 31, timeAgo: '1d ago', username: 'three_month_rule' },
-      { id: 'c3', type: 'Question', title: 'Is emotional blunting permanent?', body: 'Heavy for 3 years. I just feel flat. Not depressed. Just volume turned down.', upvotes: 289, comments: 38, timeAgo: '5h ago', username: 'flat_feelings' },
-      { id: 'c4', type: 'Story', title: 'MDMA helped me process trauma — then became its own problem', body: 'I\'m not sorry I used it. I am sorry I didn\'t stop when I should have.', upvotes: 312, comments: 29, timeAgo: '2d ago', username: 'trauma_processed' },
-      { id: 'c5', type: 'Support', title: 'My whole social life is MDMA', body: 'Every festival, every club night — it\'s all built around using.', upvotes: 234, comments: 36, timeAgo: '7h ago', username: 'social_dilemma' },
-    ],
-    achievements: [
-      { id: 'first-step', name: 'First Step', description: 'Logged Day 1', icon: '🌱', condition: () => ({ unlocked: true }) },
-      { id: 'one-week', name: 'One Week', description: '7 days clean', icon: '🌿', condition: () => ({ unlocked: true }) },
-      { id: 'two-weeks', name: 'Two Weeks', description: '14 days clean', icon: '🌳', condition: () => ({ unlocked: true }) },
-      { id: 'craving-fighter', name: 'Craving Fighter', description: 'Resisted a craving', icon: '💪', condition: () => ({ unlocked: true }) },
-      { id: '30-days', name: '30 Days', description: '30 days clean', icon: '⭐', condition: () => ({ unlocked: false, progress: '9 days to go' }) },
-      { id: 'sleep-champion', name: 'Sleep Champion', description: '7+ hrs for 7 nights', icon: '😴', condition: () => ({ unlocked: false }) },
-      { id: 'community-voice', name: 'Community Voice', description: 'First post', icon: '💬', condition: () => ({ unlocked: false }) },
-      { id: '3-months', name: '3 Months', description: '90 days clean', icon: '🏆', condition: () => ({ unlocked: false, progress: '69 days to go' }) },
-    ],
+    communityPosts: [],
+    achievements: [],
   },
 ];
 

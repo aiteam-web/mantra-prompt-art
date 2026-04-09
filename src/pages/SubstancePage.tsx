@@ -60,8 +60,6 @@ const SubstancePage = () => {
     { id: 'calculator', name: 'Health Calculator', icon: Calculator, desc: 'Track health metrics' },
     { id: 'activities', name: 'Healthy Activities', icon: Dumbbell, desc: 'Alternative habits' },
     { id: 'learn', name: 'Learn & Educate', icon: BookOpen, desc: 'Understanding recovery' },
-    { id: 'community', name: 'Community', icon: Users, desc: 'Support network' },
-    { id: 'achievements', name: 'Milestones', icon: Trophy, desc: 'Celebrate your wins' },
   ];
 
   return (

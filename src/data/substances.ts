@@ -514,9 +514,36 @@ export const substances: SubstanceConfig[] = [
       },
     },
     activities: [
-      { id: 'vivid-dream-journal', name: 'Vivid Dream Journal', duration: '3 min', type: 'journal', fields: [{ key: 'dream', label: 'What did you dream about?', type: 'textarea', placeholder: 'Describe the dream...' }, { key: 'intensity', label: 'Intensity', type: 'slider', min: 1, max: 10, step: 1 }] },
-      { id: 'boredom-buster', name: 'Boredom Buster', duration: '2 min', type: 'checklist', items: [{ title: 'Move your body for 5 minutes', content: 'Boredom after quitting is dopamine withdrawal. Movement immediately generates what cannabis used to provide.' }, { title: 'Start something you\'ve been postponing', content: 'The motivation is not coming first. Begin the task — motivation follows action, not the other way around.' }, { title: 'Call or text someone', content: 'Social contact activates reward pathways that cannabis was monopolizing.' }, { title: 'Go outside and walk without your phone', content: 'Environmental change disrupts the craving loop. Walking generates endocannabinoids naturally.' }] },
-      { id: 'body-scan', name: 'Body Scan', duration: '5 min', type: 'timer', phases: [{ time: 0, text: 'Start at your head. Notice any tension, warmth, or tingling.' }, { time: 60, text: 'Move to your neck and shoulders. Just observe.' }, { time: 120, text: 'Chest and belly. Feel your breath.' }, { time: 180, text: 'Hands and arms. What sensations are present?' }, { time: 240, text: 'Legs and feet. Stay present.' }, { time: 280, text: 'You are here. Your body is working. That is enough.' }] },
+      {
+        id: 'vivid-dream-journal', name: 'REM Rebound Dream Log', duration: '3 min', type: 'journal',
+        description: 'Cannabis suppressed your dreams. Now they\'re back — intense and wild. Capture them.',
+        fields: [
+          { key: 'dream', label: 'What did you dream about?', type: 'textarea', placeholder: 'Describe every detail you remember — colors, people, emotions...' },
+          { key: 'intensity', label: 'Dream intensity', type: 'slider', min: 1, max: 10, step: 1 },
+          { key: 'emotion', label: 'Dominant emotion in the dream', type: 'chips', options: ['Fear', 'Joy', 'Confusion', 'Anger', 'Peace', 'Nostalgia'] },
+        ],
+      },
+      {
+        id: 'endocannabinoid-boost', name: 'Natural Endocannabinoid Boost', duration: '4 min', type: 'timer',
+        description: 'Your body makes its own cannabinoids. This routine activates them without weed.',
+        phases: [
+          { time: 0, text: 'Start jogging in place or doing jumping jacks. Moderate intensity. Your endocannabinoid system activates with aerobic movement.' },
+          { time: 60, text: 'Keep going. At 10+ minutes of moderate exercise, anandamide (your natural THC) begins releasing.' },
+          { time: 120, text: 'Feel that warmth spreading? That\'s your runner\'s high — the same receptors cannabis hijacked, now working naturally.' },
+          { time: 180, text: 'Slow down gradually. Deep breaths. Your body just produced what it needed without any substance.' },
+          { time: 220, text: 'This feeling is real. It\'s yours. And it gets easier to access every day you stay clean.' },
+        ],
+      },
+      {
+        id: 'munchie-makeover', name: 'Appetite Recovery Kitchen', duration: '3 min', type: 'checklist',
+        description: 'Relearn how to eat and enjoy food without cannabis.',
+        items: [
+          { title: 'Eat something small — even if you\'re not hungry', content: 'Appetite loss after quitting is temporary. Your ghrelin signaling is recalibrating. A banana, toast, or yogurt is enough.' },
+          { title: 'Smell your food before eating', content: 'Cannabis enhanced olfactory processing. Your natural smell-taste connection is rebuilding. Pay attention to it.' },
+          { title: 'Set a meal timer for every 4 hours', content: 'Structure replaces the "I\'ll eat when I\'m high" pattern. Your body needs fuel even when it doesn\'t signal hunger.' },
+          { title: 'Drink ginger tea for nausea', content: 'Post-cannabis nausea is common in the first week. Ginger directly addresses it without medication.' },
+        ],
+      },
     ],
     articles: [
       { id: 'a1', title: 'Cannabis withdrawal is real — here\'s the timeline', tag: 'Recovery', content: 'Days 1–3: Irritability, sleep disruption, appetite loss. Days 4–7: Peak anxiety, night sweats, vivid dreams. Week 2–3: Gradual normalization. Month 1+: Most symptoms resolved.' },
